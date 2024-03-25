@@ -1,0 +1,62 @@
+
+UI = data + style + interaction
+Web UI = HTML + CSS + JS
+
+
+why we need javascript?
+
+1. to build dynamic web-pages
+2. to build sever-side applications
+3. to build mobile applications
+4. to build desktop applications
+5. to build command-line applications
+
+javascript features:
+
+1. dynamic typing
+2. functions as first-class citizens
+3. single-threaded 
+4. all all IO operations are async ( non-blocking )
+
+
+javascript is based on ECMAScript standard
+latest : ES6 ( ECMAScript 2015 )
+
+
+how to run javascript code?
+
+=> javascript engine / interpreter
+
+1. browser envi
+
+    1. chrome - v8 ( c++ )
+    2. firefox - spidermonkey ( c++ )
+    3. safari - nitro ( c++ )
+    4. edge - chakra ( c++ )
+
+2. other envi
+
+    1. node.js - v8 ( c++ )
+    2. JVM - nashorn ( java )
+
+
+javascript topics
+
+1. data types
+2. execution-context aka scope
+3. functions
+4. object-oriented programming with javascript
+5. function-binding
+6. data-structures ( list,set,map)
+7. ES6 features 
+    - New synax
+    - Async programming Api
+    - Modules
+    ...
+8. typescript overview
+9. Unit testing with jest
+10. Mixing HTML + CSS + JS
+
+------------------------------------------------------------
+
+
