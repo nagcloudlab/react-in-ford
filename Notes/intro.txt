@@ -44,15 +44,14 @@ javascript topics
 
 1. data types ✅
 2. execution-context aka scope ✅
-3. functions
-4. object-oriented programming with javascript
-5. function-binding
-6. data-structures ( list,set,map)
+3. functions ✅
+4. object-oriented programming with javascript ✅
+5. function-binding ✅
 7. ES6 features 
     - New synax
     - Async programming Api
     - Modules
-    ...
+    - Data structures
 8. typescript overview
 9. Unit testing with jest
 10. Mixing HTML + CSS + JS
