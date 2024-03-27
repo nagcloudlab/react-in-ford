@@ -1,0 +1,98 @@
+
+
+UI = data + style + interaction
+Web-UI = HTML + CSS + JS
+
+
+
+Why we need javascript with HTML-pages?
+
+using 'browser provided Apis',
+can bring interactivity to HTML-pages
+
+browser-provided Apis => w3c recommendations
+
+-e,g DOM,XHR,Timer,...
+https://developer.mozilla.org/en-US/docs/Web/API
+
+
+browser-vendors implemented these apis natively,
+abstracted to us as 'javascript' objects and functions
+
+DOM(Document Object Model) API
+    -> to create/retreive/update/delete HTML elements
+    -> to add/remove/update CSS styles
+    -> to add/remove/update event-handlers
+
+XHR(XMLHttpRequest) API / Fetch API
+-> to communicate with server ( async style)
+    -> send data to server
+    -> receive data from server
+    -> update data on server
+
+Timer API
+-> to execute action based timeout/interval    
+
+
+complexities working with browser's apis directly
+------------------------------------------------
+
+1. browser-compatibility
+2. performance issues ( i.e too much DOM footprint )
+3. memory-leaks ( i.e not releasing memory after usage)
+4. code-maintenance ( i.e too much boilerplate code)
+5. security issues ( i.e xss, csrf, cors, etc)
+6. too much code to write for simple tasks
+...
+   
+legacy solution:
+
+=> using server-side page technologies
+    -> jsp (java server pages) , asp.net, php, etc
+
+
+limitations with server-side page technologies
+
+-> on every req, server should re-generate the page keeping state
+-> on evebry response, server should send entire page, browser should re-load current page
+-> on every resp, txring same static assets, like images, css, js, etc increasing network traffic
+
+
+modern solution:
+
+=> using client-side page technologies
+   
+
+   how?
+
+   -> using modern browser's apis
+   -> using modern javascript
+
+   +
+
+   -> using third-party libraries/frameworks
+
+
+
+using third-party libraries/frameworks
+--------------------------------------
+
+1. jquery
+
+MVC ( Model-View-Controller) Frameworks
+
+2. backbone.js
+3. knockout.js
+4. dojo
+5. extjs from sencha
+6. angular.js
+..
+
+Component based libraries & frameworks
+
+7. react.js
+    with/without Next.js
+8. angular
+9. vue.js
+....
+

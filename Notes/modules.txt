@@ -1,0 +1,34 @@
+
+
+
+.js developement , without module standards,
+
+ have 2 problems
+
+-> global naming coliision
+-> dependency management
+
+solution: using module standards
+
+-> CommonJS ( cjs )
+-> ECMAScript Module ( esm )
+
+CommonJS ( cjs )
+-----------------
+
+-> every .js file is a module
+-> all variables/functions are private by default
+-> to make them public, we need to use module.exports
+-> to import them, we need to use require
+-> group related modules as package with package.json
+
+imp-note: Node.js uses CommonJS as module standard
+
+ECMAScript Module ( esm )
+-------------------------
+
+-> every .js file is a module
+-> all variables/functions are private by default
+-> to make them public, we need to use export
+-> to import them, we need to use import
+-> group related modules as package with package.json

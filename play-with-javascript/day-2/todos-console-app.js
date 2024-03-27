@@ -21,7 +21,7 @@ const service = {
       completed: false,
     };
     // mutable
-    // todos.push(newTodo); // mutable
+    // todos.push(newTodo);
     // // immutable
     // todos = todos.concat(newTodo);
     todos = [...todos, newTodo];
