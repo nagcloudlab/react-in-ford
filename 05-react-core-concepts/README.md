@@ -9,3 +9,7 @@ npm start
 react core concepts
 
 - jsx
+  => template language for react
+- props
+  => data that comes from outside of the component
+  ( mostly from parent component )
