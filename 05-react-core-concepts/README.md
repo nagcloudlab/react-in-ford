@@ -13,3 +13,6 @@ react core concepts
 - props
   => data that comes from outside of the component
   ( mostly from parent component )
+- state
+  => data that is local or private to that component
+  can be changed within the component on some event
