@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function VotingTable() {
+function VotingTable(props: any) {
+  const { votingLines = [] } = props;
   return (
     <div className="card">
       <div className="card-header">Voting Table</div>
@@ -16,16 +17,13 @@ function VotingTable() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Item 1</td>
-              <td>10</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>Item 2</td>
-              <td>15</td>
-              <td>3</td>
-            </tr>
+            {votingLines.map((line: any, index: number) => (
+              <tr key={index}>
+                <td>{line.item}</td>
+                <td>{line.likes}</td>
+                <td>{line.dislikes}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -34,7 +32,15 @@ function VotingTable() {
 }
 
 function VotingItem(props: any) {
-  const { item = "Unknown" } = props;
+  const { item = "Unknown", onVote } = props;
+  const handleLike = () => {
+    const event = { item, type: "like" };
+    onVote(event);
+  };
+  const handleDislike = () => {
+    const event = { item, type: "dislike" };
+    onVote(event);
+  };
   return (
     <div
       style={{
@@ -47,8 +53,12 @@ function VotingItem(props: any) {
           <div className="display-4">{item}</div>
           <hr />
           <div className="d-flex justify-content-around">
-            <button className="btn btn-primary">Vote</button>
-            <button className="btn btn-danger">Unvote</button>
+            <button onClick={handleLike} className="btn btn-primary">
+              Vote
+            </button>
+            <button onClick={handleDislike} className="btn btn-danger">
+              Unvote
+            </button>
           </div>
         </div>
       </div>
@@ -57,15 +67,43 @@ function VotingItem(props: any) {
 }
 
 function VotingBox() {
+  const votingItems = ["React.js", "Angular"];
+  const [votingLines, setVotingLines] = useState([
+    {
+      item: "React.js",
+      likes: 0,
+      dislikes: 0,
+    },
+    {
+      item: "Angular",
+      likes: 0,
+      dislikes: 0,
+    },
+  ]);
+  const handleVote = (e: any) => {
+    const { item, type } = e;
+    const newVotingLines = votingLines.map((line: any) => {
+      if (line.item === item) {
+        if (type === "like") {
+          line.likes++;
+        } else {
+          line.dislikes++;
+        }
+      }
+      return line;
+    });
+    setVotingLines(newVotingLines); // trigger re-render
+  };
   return (
     <div className="card">
       <div className="card-header">Voting Box</div>
       <div className="card-body">
-        <div className="d-flex">
-          <VotingItem item="React.js" />
-          <VotingItem item="Angular" />
+        <div className="d-flex flex-wrap">
+          {votingItems.map((item, index) => (
+            <VotingItem key={index} item={item} onVote={handleVote} />
+          ))}
         </div>
-        <VotingTable />
+        <VotingTable votingLines={votingLines} />
       </div>
     </div>
   );
