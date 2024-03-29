@@ -260,6 +260,24 @@ function X() {
 // 6. LocalStorage, SessionStorage
 //..
 
+/**
+ *
+ * useEffect()
+ *
+ * - useEffect() is a hook that allows you to perform side effects in functional components.
+ * - useEffect() accepts two arguments: a callback function and an array of dependencies.
+ * - The callback function is the side effect.
+ * - The callback function will be called after the component is rendered.
+ * - The callback function can return a cleanup function.
+ * - The cleanup function will be called before the component is removed from the DOM.
+ * - The array of dependencies is an optional argument.
+ * - The array of dependencies is used to control when the side effect will be executed.
+ * - If the array of dependencies is empty, the side effect will be executed only once after the initial render.
+ * - If the array of dependencies contains variables, the side effect will be executed whenever the variables change.
+ * - useEffect() is used to perform side effects in functional components.
+ *
+ */
+
 function Counter_v3() {
   console.log("Counter_v3:render()");
   const [count1, setCount1] = useState(100);
@@ -402,8 +420,7 @@ function App() {
 
       {/* <button onClick={(e) => setShow(!show)}>toggle</button>
       {show && <Counter_v3 />} */}
-
-      <DataGrid />
+      {/* <DataGrid /> */}
     </div>
   );
 }
