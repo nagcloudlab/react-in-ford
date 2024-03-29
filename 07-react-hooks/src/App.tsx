@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 
 /**
  *
@@ -22,9 +22,7 @@ import React, { useState } from "react";
  * - useState() can accept an object as an argument.
  * - When you update the state, you need to pass a new object or a new value.
  * - You can use the spread operator to copy the existing state and then update the new value.
- *
- *
- * - use this hook if state is simple & has few actions to perform
+ * - useState() is used to manage simple state variables.
  *
  */
 
@@ -73,12 +71,90 @@ function Counter_v1() {
   );
 }
 
+/**
+ *
+ *
+ * useReducer()
+ *
+ * - useReducer() is a hook that is used for complex state management.
+ * - useReducer() is similar to the reducer function in Redux.
+ * - useReducer() accepts two arguments: a reducer function and an initial state.
+ * - The reducer function takes two arguments: the current state and an action.
+ * - The reducer function returns a new state.
+ * - useReducer() returns an array with two elements: the current state and a dispatch function.
+ * - The dispatch function is used to dispatch an action.
+ * - When you dispatch an action, the reducer function will be called with the current state and the action.
+ * - The reducer function will return a new state.
+ * - The component will re-render with the new state.
+ * - useReducer() is used to manage complex state variables.
+ *
+ */
+
+function myReducer(state: any = {}, action: any) {
+  console.log("myReducer()");
+  let { type, payload } = action;
+  switch (type) {
+    case "INCREMENT_COUNT1":
+      return { ...state, count1: state.count1 + 1 };
+    case "INCREMENT_COUNT2":
+      return { ...state, count2: state.count2 + payload };
+    case "UP_VOTE":
+      return { ...state, vote: { ...state.vote, up: state.vote.up + 1 } };
+    case "DOWN_VOTE":
+      return { ...state, vote: { ...state.vote, down: state.vote.down + 1 } };
+    default:
+      return state;
+  }
+}
+
+function Counter_v2() {
+  console.log("Counter_v2:render()");
+  const [state, dispatch] = useReducer(myReducer, {
+    count1: 100,
+    count2: 200,
+    vote: { up: 0, down: 0 },
+  });
+  const { count1, count2, vote } = state;
+
+  const handleIncrementCount1 = () => {
+    dispatch({ type: "INCREMENT_COUNT1" });
+  };
+  const handleIncrementCount2 = () => {
+    dispatch({ type: "INCREMENT_COUNT2", payload: 20 });
+  };
+  const handleUpVote = () => {
+    dispatch({ type: "UP_VOTE" });
+  };
+  const handleDownVote = () => {
+    dispatch({ type: "DOWN_VOTE" });
+  };
+
+  return (
+    <div className="card">
+      <div className="card-header">Counter : useReducer</div>
+      <div className="card-body">
+        <p>Count1: {count1}</p>
+        <p>Count2: {count2}</p>
+        <p>
+          Up: {vote.up} , Down: {vote.down}
+        </p>
+        <button onClick={handleIncrementCount1}>Increment count-1</button>
+        <button onClick={handleIncrementCount2}>
+          Increment count-2 with +20
+        </button>
+        <button onClick={handleUpVote}>Up Vote</button>
+        <button onClick={handleDownVote}>Down Vote</button>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   return (
     <div className="container">
       <div className="display-1">react hooks</div>
       <hr />
-      <Counter_v1 />
+      <Counter_v2 />
     </div>
   );
 }
