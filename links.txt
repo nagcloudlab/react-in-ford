@@ -1,0 +1,20 @@
+
+# JavaScript
+
+https://javascript.info/
+https://developer.mozilla.org/en-US/docs/Web/JavaScript
+https://exploringjs.com/
+https://latentflip.com/loupe
+
+
+https://excalidraw.com/
+
+# React
+https://www.react.express/
+
+# React Introduction Slides
+https://docs.google.com/presentation/d/1NmBXZC3gEfwSP0pfg3XDxzkElWyWXtsUPjeaX_RJZ0Q/edit?usp=sharing
+
+
+# typescript
+https://github.com/nagcloudlab/typescript
