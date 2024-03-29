@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import VotingBox from "./voting-components/VotingBox";
-import TodosBox from "./todos-components/TodosBox";
+import VotingBox from "./voting/VotingBox";
+import TodosBox from "./todos/TodosBox";
 
 function App() {
   return (
