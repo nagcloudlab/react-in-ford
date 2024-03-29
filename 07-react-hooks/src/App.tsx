@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useContext } from "react";
 
 /**
  *
@@ -70,6 +70,8 @@ function Counter_v1() {
     </div>
   );
 }
+
+//--------------------------------------------------------------
 
 /**
  *
@@ -149,12 +151,126 @@ function Counter_v2() {
   );
 }
 
+//--------------------------------------------------------------
+
+/**
+ *
+ * useContext()
+ *
+ * - useContext() is a hook that allows you to use the context in functional components.
+ * - useContext() accepts a context object as an argument.
+ * - useContext() returns the current context value for the context.
+ * - The context value is determined by the value prop of the nearest <MyContext.Provider> above the calling component in the tree.
+ * - When the context value changes, the component will re-render.
+ * - useContext() is used to consume the context value.
+ *
+ *
+ */
+
+const UserContext = React.createContext({} as any);
+
+function C(props: any) {
+  console.log("C:render()");
+  const currentUser = useContext(UserContext);
+  return (
+    <div className="card">
+      <div className="card-header">Component C</div>
+      <div className="card-body">
+        <p>
+          {currentUser.name} is a {currentUser.role}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function B(props: any) {
+  console.log("B:render()");
+  return (
+    <div className="card">
+      <div className="card-header">Component B</div>
+      <div className="card-body">
+        <C />
+      </div>
+    </div>
+  );
+}
+
+function A() {
+  console.log("A:render()");
+  const currentUser = useContext(UserContext);
+  return (
+    <div className="card">
+      <div className="card-header">Component A</div>
+      <div className="card-body">
+        <p>
+          {currentUser.name} is a {currentUser.role}
+        </p>
+        <B />
+      </div>
+    </div>
+  );
+}
+
+function Z() {
+  console.log("Z:render()");
+  const currentUser = useContext(UserContext);
+  return (
+    <div className="card">
+      <div className="card-header">Component Z</div>
+      <div className="card-body">
+        <p>
+          {currentUser.name} is a {currentUser.role}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function Y() {
+  console.log("Y:render()");
+  return (
+    <div className="card">
+      <div className="card-header">Component Y</div>
+      <div className="card-body">
+        <Z />
+      </div>
+    </div>
+  );
+}
+
+function X() {
+  console.log("X:render()");
+  return (
+    <div className="card">
+      <div className="card-header">Component X</div>
+      <div className="card-body">
+        <Y />
+      </div>
+    </div>
+  );
+}
+
 function App() {
+  const [currentUser, setCurrentUser] = useState({
+    id: 1,
+    name: "Nag",
+    role: "Trainer",
+  });
   return (
     <div className="container">
       <div className="display-1">react hooks</div>
       <hr />
-      <Counter_v2 />
+      <UserContext.Provider value={currentUser}>
+        <div className="row">
+          <div className="col">
+            <A />
+          </div>
+          <div className="col">
+            <X />
+          </div>
+        </div>
+      </UserContext.Provider>
     </div>
   );
 }
