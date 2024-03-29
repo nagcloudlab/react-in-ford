@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useContext } from "react";
+import React, { useState, useReducer, useContext, useEffect } from "react";
 
 /**
  *
@@ -183,7 +183,6 @@ function C(props: any) {
     </div>
   );
 }
-
 function B(props: any) {
   console.log("B:render()");
   return (
@@ -195,7 +194,6 @@ function B(props: any) {
     </div>
   );
 }
-
 function A() {
   console.log("A:render()");
   const currentUser = useContext(UserContext);
@@ -211,7 +209,6 @@ function A() {
     </div>
   );
 }
-
 function Z() {
   console.log("Z:render()");
   const currentUser = useContext(UserContext);
@@ -226,7 +223,6 @@ function Z() {
     </div>
   );
 }
-
 function Y() {
   console.log("Y:render()");
   return (
@@ -238,7 +234,6 @@ function Y() {
     </div>
   );
 }
-
 function X() {
   console.log("X:render()");
   return (
@@ -251,17 +246,150 @@ function X() {
   );
 }
 
+//--------------------------------------------------------------
+
+// side-effects in react component
+
+// e.g side effects
+
+// 1. DOM manipulation
+// 2. Network calls
+// 3. Timer functions
+// 4. Add/Remove event listeners
+// 5. Subscription
+// 6. LocalStorage, SessionStorage
+//..
+
+function Counter_v3() {
+  console.log("Counter_v3:render()");
+  const [count1, setCount1] = useState(100);
+  const [count2, setCount2] = useState(() => {
+    // count2 is initialized with a function
+    console.log("count2 state initialized with a function");
+    return 100 + 100;
+  });
+  const [vote, setVote] = useState({ up: 0, down: 0 });
+
+  useEffect(() => {
+    console.log("effect-1");
+  }, []);
+  useEffect(() => {
+    console.log("effect-2");
+  }, [count1]);
+  useEffect(() => {
+    console.log("effect-3");
+  }, [count1, count2]);
+  useEffect(() => {
+    console.log("effect-4");
+    document.title = `Votes : up - ${vote.up} , down - ${vote.down}`;
+  }, [vote]);
+
+  const [timeNow, setTimeNow] = useState(new Date().toLocaleTimeString());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      console.log("tik");
+      setTimeNow(new Date().toLocaleTimeString());
+    }, 1000);
+
+    return () => {
+      console.log("clean-up");
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  useEffect(() => {
+    // init effect..
+    return () => {
+      // clean effect
+    };
+  }, []);
+
+  const handleIncrementCount1 = () => {
+    setCount1(count1 + 1);
+  };
+  const handleIncrementCount2 = () => {
+    //setCount2(count2 + 1); // using value to update state
+    setCount2((prevCount2) => prevCount2 + 1); // using function to update state
+  };
+  const handleUpVote = () => {
+    setVote({ ...vote, up: vote.up + 1 });
+  };
+  const handleDownVote = () => {
+    // setVote({ ...vote, down: vote.down + 1 });
+    setVote((prevVote) => {
+      return { ...prevVote, down: prevVote.down + 1 };
+    });
+  };
+
+  return (
+    <div className="card">
+      <div className="card-header">Counter : useEffect() : {timeNow}</div>
+      <div className="card-body">
+        <p>Count1: {count1}</p>
+        <p>Count2: {count2}</p>
+        <p>
+          Up: {vote.up} , Down: {vote.down}
+        </p>
+        <button onClick={handleIncrementCount1}>Increment count-1</button>
+        <button onClick={handleIncrementCount2}>Increment count-2</button>
+        <button onClick={handleUpVote}>Up Vote</button>
+        <button onClick={handleDownVote}>Down Vote</button>
+      </div>
+    </div>
+  );
+}
+
+function DataGrid() {
+  const [resource, setResource] = useState("");
+  const [data, setData] = useState([]);
+  const handleChange = (e: any) => {
+    setResource(e.target.value);
+  };
+  const fetchData = async () => {
+    console.log("fetching data from server..");
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/${resource}`
+    );
+    const data = await response.json();
+    setData(data);
+  };
+  useEffect(() => {
+    console.log("resource changed..");
+    if (resource) {
+      fetchData();
+    }
+  }, [resource]);
+
+  return (
+    <div className="card">
+      <div className="card-header">DataGrid - {resource}</div>
+      <div className="card-body">
+        <select className="" onChange={handleChange}>
+          <option value={""}>-select-</option>
+          <option value={"users"}>users</option>
+          <option value={"posts"}>posts</option>
+          <option value={"comments"}>comments</option>
+        </select>
+        <hr />
+        {JSON.stringify(data)}
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [currentUser, setCurrentUser] = useState({
     id: 1,
     name: "Nag",
     role: "Trainer",
   });
+  const [show, setShow] = useState(true);
   return (
     <div className="container">
       <div className="display-1">react hooks</div>
       <hr />
-      <UserContext.Provider value={currentUser}>
+      {/* <UserContext.Provider value={currentUser}>
         <div className="row">
           <div className="col">
             <A />
@@ -270,7 +398,12 @@ function App() {
             <X />
           </div>
         </div>
-      </UserContext.Provider>
+      </UserContext.Provider> */}
+
+      {/* <button onClick={(e) => setShow(!show)}>toggle</button>
+      {show && <Counter_v3 />} */}
+
+      <DataGrid />
     </div>
   );
 }
