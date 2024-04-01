@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Review from "./Review";
 
 function Product(props: any) {
   let { product } = props;
@@ -19,6 +20,16 @@ function Product(props: any) {
     setCurrentTab(tabIndex);
   };
 
+  const renderReviews = () => {
+    return reviews.map((review: any, index: number) => {
+      return (
+        <div key={index}>
+          <Review review={review} />
+        </div>
+      );
+    });
+  };
+
   const renderTabPanel = (product: any) => {
     let panel;
     switch (currentTab) {
@@ -29,7 +40,7 @@ function Product(props: any) {
         panel = <div>Not Yet</div>;
         break;
       case 3:
-        panel = <div>None Yet</div>;
+        panel = <div>{renderReviews()}</div>;
         break;
       default:
         panel = null;
