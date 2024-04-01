@@ -37,7 +37,12 @@ function ProductList(props: any) {
     });
   };
 
-  return <div>{renderProducts()}</div>;
+  return (
+    <div className="card mt-1">
+      <div className="card-header">Product List</div>
+      <div className="card-body">{renderProducts()}</div>
+    </div>
+  );
 }
 
 export default ProductList;
