@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Review from "./Review";
+import ReviewForm from "./ReviewForm";
 
 function Product(props: any) {
   let { product, onBuy } = props;
@@ -35,7 +36,12 @@ function Product(props: any) {
         panel = <div>Not Yet</div>;
         break;
       case 3:
-        panel = <div>{renderReviews()}</div>;
+        panel = (
+          <>
+            <ReviewForm />
+            <div>{renderReviews()}</div>
+          </>
+        );
         break;
       default:
         panel = null;
