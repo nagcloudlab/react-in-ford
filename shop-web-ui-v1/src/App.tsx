@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 
 function App() {
-  const [product] = useState({
-    id: 1,
-    name: "Laptop",
-    price: 1000.0,
-    description: "Mac pro Laptop",
-    imagePath: "images/laptop.png",
-  });
+  const [products] = useState([
+    {
+      id: 1,
+      name: "Laptop",
+      price: 1000.0,
+      description: "Mac pro Laptop",
+      imagePath: "images/laptop.png",
+    },
+    {
+      id: 2,
+      name: "Mobile",
+      price: 500.0,
+      description: "iphone pro Laptop",
+      imagePath: "images/mobile.png",
+    },
+  ]);
   const [currentTab, setCurrentTab] = useState(1);
   const handleTabChange = (tabIndex: number) => {
     setCurrentTab(tabIndex);
@@ -33,7 +42,7 @@ function App() {
 
   const renderProduct = (product: any) => {
     return (
-      <div>
+      <div className="list-group-item m-2">
         <div className="row">
           <div className="col-4">
             <img src={product.imagePath} alt="product" className="img-fluid" />
@@ -45,7 +54,7 @@ function App() {
             <ul className="nav nav-tabs">
               <li className="nav-item">
                 <a
-                  className="nav-link active"
+                  className={`nav-link ${currentTab === 1 ? "active" : ""}`}
                   href="#"
                   onClick={(e) => handleTabChange(1)}
                 >
@@ -54,7 +63,7 @@ function App() {
               </li>
               <li className="nav-item">
                 <a
-                  className="nav-link"
+                  className={`nav-link ${currentTab === 2 ? "active" : ""}`}
                   href="#"
                   onClick={(e) => handleTabChange(2)}
                 >
@@ -63,7 +72,7 @@ function App() {
               </li>
               <li className="nav-item">
                 <a
-                  className="nav-link"
+                  className={`nav-link ${currentTab === 3 ? "active" : ""}`}
                   href="#"
                   onClick={(e) => handleTabChange(3)}
                 >
@@ -78,11 +87,21 @@ function App() {
     );
   };
 
+  const renderProducts = () => {
+    return products.map((product) => {
+      return (
+        <div key={product.id} className="list-group">
+          {renderProduct(product)}
+        </div>
+      );
+    });
+  };
+
   return (
     <div className="container">
       <div className="display-1">shop-IT</div>
       <hr />
-      {renderProduct(product)}
+      {renderProducts()}
     </div>
   );
 }
