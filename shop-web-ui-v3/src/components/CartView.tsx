@@ -21,16 +21,18 @@ function CartView(props: any) {
           <td>{index + 1}</td>
           <td>{item.name}</td>
           <td>
-            <button onClick={(e) => handleQty(item, -1)}>
-              <i className="fa fa-minus"></i>
-            </button>
-            {qty}
-            <button onClick={(e) => handleQty(item, 1)}>
-              <i className="fa fa-plus"></i>
-            </button>
+            <div className="d-flex justify-content-between">
+              <button onClick={(e) => handleQty(item, -1)}>
+                <i className="fa fa-minus"></i>
+              </button>
+              {qty}
+              <button onClick={(e) => handleQty(item, 1)}>
+                <i className="fa fa-plus"></i>
+              </button>
+            </div>
           </td>
-          <td>{item.price}</td>
-          <td>{item.price * qty}</td>
+          <td>&#8377; {item.price}</td>
+          <td>&#8377; {item.price * qty}</td>
           <td>
             <button
               onClick={(e) => handleDeleteCartLine(cartLine.id)}
@@ -48,7 +50,7 @@ function CartView(props: any) {
     <div className="card">
       <div className="card-header">Item(s) in cart</div>
       <div className="card-body">
-        <table className="table">
+        <table className="table table-bordered">
           <thead>
             <tr>
               <th>S-No</th>
