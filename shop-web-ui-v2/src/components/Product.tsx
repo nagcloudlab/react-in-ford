@@ -5,7 +5,13 @@ import ReviewForm from "./ReviewForm";
 function Product(props: any) {
   let { product, onBuy } = props;
   const [currentTab, setCurrentTab] = useState(1);
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState([
+    {
+      stars: 5,
+      author: "who-1",
+      body: "sample review-1",
+    },
+  ]);
   const handleTabChange = (tabIndex: number) => {
     setCurrentTab(tabIndex);
   };

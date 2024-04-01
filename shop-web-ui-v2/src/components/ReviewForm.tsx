@@ -1,7 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 function ReviewForm(props: any) {
   const [isOpened, setIsOpened] = useState(false);
+
+  const starsRef = useRef<HTMLSelectElement>(null);
+  const authorRef = useRef<HTMLInputElement>(null);
+  const bodyRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newReview = {
+      stars: starsRef.current?.value,
+      author: authorRef.current?.value,
+      body: bodyRef.current?.value,
+    };
+    console.log(newReview);
+  };
 
   if (!isOpened) {
     return (
@@ -14,10 +28,10 @@ function ReviewForm(props: any) {
       <div className="card">
         <div className="card-header">Review Form</div>
         <div className="card-body">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Stars</label>
-              <select className="form-control">
+              <select className="form-control" ref={starsRef}>
                 {[1, 2, 3, 4, 5].map((value: number) => {
                   return (
                     <option key={value} value={value}>
@@ -29,11 +43,11 @@ function ReviewForm(props: any) {
             </div>
             <div className="form-group">
               <label>Author</label>
-              <input type="text" className="form-control" />
+              <input type="text" className="form-control" ref={authorRef} />
             </div>
             <div className="form-group">
               <label>Body</label>
-              <textarea className="form-control"></textarea>
+              <textarea className="form-control" ref={bodyRef}></textarea>
             </div>
             <hr />
             <div className="d-flex justify-content-between">
