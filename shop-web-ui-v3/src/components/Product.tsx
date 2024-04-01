@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import CartContext from "../contexts/CartContext";
 import Review from "./Review";
 import ReviewForm from "./ReviewForm";
 
 function Product(props: any) {
   let { product, onBuy } = props;
+  const { dispatch, cart } = useContext(CartContext);
   const [currentTab, setCurrentTab] = useState(1);
   const [reviews, setReviews] = useState([
     {
@@ -22,9 +24,11 @@ function Product(props: any) {
   };
 
   const handleBuy = () => {
-    if (onBuy) {
-      onBuy(product);
-    }
+    const action = {
+      type: "ADD_TO_CART",
+      payload: { item: product, qty: 1 },
+    };
+    dispatch(action);
   };
 
   const renderReviews = () => {
@@ -59,6 +63,10 @@ function Product(props: any) {
     }
     return panel;
   };
+
+  const isItemInCart =
+    cart.findIndex((cartLine: any) => cartLine.item.id === product.id) !== -1;
+
   return (
     <div>
       <div className="row">
@@ -68,7 +76,11 @@ function Product(props: any) {
         <div className="col-8">
           <div>{product.name}</div>
           <div>&#8377;{product.price}</div>
-          <button onClick={(e) => handleBuy()} className="btn btn-primary">
+          <button
+            disabled={isItemInCart}
+            onClick={(e) => handleBuy()}
+            className="btn btn-primary"
+          >
             Buy
           </button>
           <ul className="nav nav-tabs">
