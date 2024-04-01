@@ -3,6 +3,18 @@ import React, { useState } from "react";
 function Product(props: any) {
   let { product } = props;
   const [currentTab, setCurrentTab] = useState(1);
+  const [reviews, setReviews] = useState([
+    {
+      stars: 5,
+      body: "I love this product",
+      author: "Who1",
+    },
+    {
+      stars: 1,
+      body: "I hate this product",
+      author: "Who2",
+    },
+  ]);
   const handleTabChange = (tabIndex: number) => {
     setCurrentTab(tabIndex);
   };
