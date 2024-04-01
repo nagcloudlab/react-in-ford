@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Review from "./Review";
 
 function Product(props: any) {
-  let { product } = props;
+  let { product, onBuy } = props;
   const [currentTab, setCurrentTab] = useState(1);
   const [reviews, setReviews] = useState([
     {
@@ -18,6 +18,12 @@ function Product(props: any) {
   ]);
   const handleTabChange = (tabIndex: number) => {
     setCurrentTab(tabIndex);
+  };
+
+  const handleBuy = () => {
+    if (onBuy) {
+      onBuy(product);
+    }
   };
 
   const renderReviews = () => {
@@ -55,8 +61,10 @@ function Product(props: any) {
         </div>
         <div className="col-8">
           <div>{product.name}</div>
-          <div>${product.price}</div>
-          <button className="btn btn-primary">Buy</button>
+          <div>&#8377;{product.price}</div>
+          <button onClick={(e) => handleBuy()} className="btn btn-primary">
+            Buy
+          </button>
           <ul className="nav nav-tabs">
             <li className="nav-item">
               <a

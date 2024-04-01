@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Product from "./Product";
 
 function ProductList(props: any) {
+  const { onBuy } = props;
   const [products] = useState([
     {
       id: 1,
@@ -22,7 +23,7 @@ function ProductList(props: any) {
   const renderProduct = (product: any) => {
     return (
       <div className="list-group-item m-2">
-        <Product product={product} />
+        <Product product={product} onBuy={onBuy} />
       </div>
     );
   };
