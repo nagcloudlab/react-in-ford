@@ -8,6 +8,28 @@ function App() {
     description: "Mac pro Laptop",
     imagePath: "images/laptop.png",
   });
+  const [currentTab, setCurrentTab] = useState(1);
+  const handleTabChange = (tabIndex: number) => {
+    setCurrentTab(tabIndex);
+  };
+
+  const renderTabPanel = (product: any) => {
+    let panel;
+    switch (currentTab) {
+      case 1:
+        panel = <div>{product.description}</div>;
+        break;
+      case 2:
+        panel = <div>Not Yet</div>;
+        break;
+      case 3:
+        panel = <div>None Yet</div>;
+        break;
+      default:
+        panel = null;
+    }
+    return panel;
+  };
 
   const renderProduct = (product: any) => {
     return (
@@ -22,22 +44,34 @@ function App() {
             <button className="btn btn-primary">Buy</button>
             <ul className="nav nav-tabs">
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a
+                  className="nav-link active"
+                  href="#"
+                  onClick={(e) => handleTabChange(1)}
+                >
                   Description
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a
+                  className="nav-link"
+                  href="#"
+                  onClick={(e) => handleTabChange(2)}
+                >
                   Specification
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link ">Reviews</a>
+                <a
+                  className="nav-link"
+                  href="#"
+                  onClick={(e) => handleTabChange(3)}
+                >
+                  Reviews
+                </a>
               </li>
             </ul>
-            <p>{product.description}</p>
-            <p>Not Yet</p>
-            <p>None Yet</p>
+            {renderTabPanel(product)}
           </div>
         </div>
       </div>
