@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CartBadge from "./components/CartBadge";
+import CartView from "./components/CartView";
 import Navbar from "./components/Navbar";
 import ProductList from "./components/ProductList";
 
@@ -12,6 +13,7 @@ function App() {
     <div className="container">
       <Navbar title="shop-IT" />
       <CartBadge cart={cart} />
+      <CartView cart={cart} />
       <ProductList onBuy={addToCart} />
     </div>
   );
