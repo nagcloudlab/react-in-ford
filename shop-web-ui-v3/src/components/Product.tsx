@@ -1,5 +1,6 @@
 import React, { useContext, useState, useCallback } from "react";
 import CartContext from "../contexts/CartContext";
+import Button from "./Button";
 import Review from "./Review";
 import ReviewForm from "./ReviewForm_v2";
 
@@ -78,13 +79,16 @@ function Product(props: any) {
         <div className="col-8">
           <div>{product.name}</div>
           <div>&#8377;{product.price}</div>
-          <button
+          {/* <button
             disabled={isItemInCart}
             onClick={(e) => handleBuy()}
             className="btn btn-primary"
           >
             Buy
-          </button>
+          </button> */}
+          <Button disabled={isItemInCart} onClick={(e) => handleBuy()}>
+            Buy
+          </Button>
           <ul className="nav nav-tabs">
             <li className="nav-item">
               <a
