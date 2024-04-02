@@ -13,11 +13,12 @@ import cartReducer from "./reducers/cart";
 
 function App() {
   const [cart, dispatch] = useReducer(cartReducer, []);
-  const [toggle, setToggle] = useState(false);
+  // const [toggle, setToggle] = useState(false);
   return (
     <div className="container">
       <CartContext.Provider value={{ cart, dispatch }}>
         <Navbar title="shop-IT" />
+        {/* 
         <button onClick={(e) => setToggle(!toggle)}>toggle</button>
         <hr />
         <Foo />
@@ -30,7 +31,8 @@ function App() {
           <p>p1</p>
           <p>p2</p>
         </Box>
-        <hr />
+        <hr /> 
+        */}
         <CartView title="CartView" />
         <ProductList title="ProductList" />
       </CartContext.Provider>

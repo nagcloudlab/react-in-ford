@@ -4,7 +4,7 @@ import { withCard } from "../hoc";
 import { useOnline } from "../hooks/index";
 
 function CartView(props: any) {
-  console.log("CartView render");
+  // console.log("CartView render");
   let { cart = [], dispatch } = useContext(CartContext);
   const online = useOnline();
 
@@ -18,7 +18,7 @@ function CartView(props: any) {
   };
 
   const totalAmountOfCartLines = useMemo(() => {
-    console.log("calculating total amount");
+    // console.log("calculating total amount");
     return cart.reduce((acc: any, cartLine: any) => {
       return acc + cartLine.item.price * cartLine.qty;
     }, 0);
