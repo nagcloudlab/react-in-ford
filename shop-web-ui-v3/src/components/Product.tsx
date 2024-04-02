@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import CartContext from "../contexts/CartContext";
 import Review from "./Review";
-import ReviewForm from "./ReviewForm";
+import ReviewForm from "./ReviewForm_v2";
 
 function Product(props: any) {
   let { product, onBuy } = props;

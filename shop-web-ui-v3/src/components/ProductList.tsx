@@ -10,13 +10,13 @@ function ProductList(props: any) {
       description: "Mac pro Laptop",
       imagePath: "images/laptop.png",
     },
-    {
-      id: 2,
-      name: "Mobile",
-      price: 500.0,
-      description: "iphone pro Laptop",
-      imagePath: "images/mobile.png",
-    },
+    // {
+    //   id: 2,
+    //   name: "Mobile",
+    //   price: 500.0,
+    //   description: "iphone pro Laptop",
+    //   imagePath: "images/mobile.png",
+    // },
   ]);
 
   const renderProduct = (product: any) => {
