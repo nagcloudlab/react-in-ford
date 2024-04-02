@@ -1,6 +1,8 @@
 import React, { useReducer, useState } from "react";
+import Bar from "./components/Bar";
 import CartBadge from "./components/CartBadge";
 import CartView from "./components/CartView";
+import Foo from "./components/Foo";
 import Navbar from "./components/Navbar";
 import ProductList from "./components/ProductList";
 import CartContext from "./contexts/CartContext";
@@ -14,6 +16,10 @@ function App() {
       <CartContext.Provider value={{ cart, dispatch }}>
         <Navbar title="shop-IT" />
         <button onClick={(e) => setToggle(!toggle)}>toggle</button>
+        <hr />
+        <Foo />
+        <Bar />
+        <hr />
         <CartView title="CartView" />
         <ProductList title="ProductList" />
       </CartContext.Provider>
