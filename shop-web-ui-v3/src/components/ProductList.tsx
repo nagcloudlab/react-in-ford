@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useOnline } from "../hooks";
 import Product from "./Product";
 
 function ProductList(props: any) {
@@ -10,14 +11,15 @@ function ProductList(props: any) {
       description: "Mac pro Laptop",
       imagePath: "images/laptop.png",
     },
-    // {
-    //   id: 2,
-    //   name: "Mobile",
-    //   price: 500.0,
-    //   description: "iphone pro Laptop",
-    //   imagePath: "images/mobile.png",
-    // },
+    {
+      id: 2,
+      name: "Mobile",
+      price: 500.0,
+      description: "iphone pro Laptop",
+      imagePath: "images/mobile.png",
+    },
   ]);
+  const online = useOnline();
 
   const renderProduct = (product: any) => {
     return (
@@ -40,7 +42,10 @@ function ProductList(props: any) {
   return (
     <div className="card mt-1">
       <div className="card-header">Product List</div>
-      <div className="card-body">{renderProducts()}</div>
+      <div className="card-body">
+        {!online && <div className="alert alert-danger">You are offline</div>}
+        {renderProducts()}
+      </div>
     </div>
   );
 }

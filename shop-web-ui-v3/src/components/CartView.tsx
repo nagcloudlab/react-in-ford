@@ -1,8 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import CartContext from "../contexts/CartContext";
+import { useOnline } from "../hooks";
 
 function CartView(props: any) {
+  console.log("CartView render");
   let { cart = [], dispatch } = useContext(CartContext);
+  const online = useOnline();
 
   const handleDeleteCartLine = (id: any) => {
     let index = cart.findIndex((item: any) => item.id === id);
@@ -12,6 +15,13 @@ function CartView(props: any) {
   const handleQty = (item: any, qty: number) => {
     dispatch({ type: "UPDATE_QTY", payload: { item, qty } });
   };
+
+  const totalAmountOfCartLines = useMemo(() => {
+    console.log("calculating total amount");
+    return cart.reduce((acc: any, cartLine: any) => {
+      return acc + cartLine.item.price * cartLine.qty;
+    }, 0);
+  }, [cart]);
 
   const renderCartLines = () => {
     return cart.map((cartLine: any, index: number) => {
@@ -50,6 +60,7 @@ function CartView(props: any) {
     <div className="card">
       <div className="card-header">Item(s) in cart</div>
       <div className="card-body">
+        {!online && <div className="alert alert-danger">You are offline</div>}
         <table className="table table-bordered">
           <thead>
             <tr>
@@ -61,6 +72,12 @@ function CartView(props: any) {
             </tr>
           </thead>
           <tbody>{renderCartLines()}</tbody>
+          <tfoot>
+            <tr>
+              <td colSpan={4}>Total Amount</td>
+              <td>&#8377; {totalAmountOfCartLines}</td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useCallback } from "react";
 import CartContext from "../contexts/CartContext";
 import Review from "./Review";
 import ReviewForm from "./ReviewForm_v2";
@@ -14,14 +14,16 @@ function Product(props: any) {
       body: "sample review-1",
     },
   ]);
-  const handleNewReview = (e: any) => {
+
+  const handleNewReview = useCallback((e: any) => {
     let { review } = e;
     let newReviews = [review, ...reviews];
     setReviews(newReviews);
-  };
-  const handleTabChange = (tabIndex: number) => {
+  }, []);
+
+  const handleTabChange = useCallback((tabIndex: number) => {
     setCurrentTab(tabIndex);
-  };
+  }, []);
 
   const handleBuy = () => {
     const action = {

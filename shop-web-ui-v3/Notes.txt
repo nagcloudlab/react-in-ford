@@ -1,0 +1,22 @@
+
+
+hooks
+
+state management
+    - useState
+    - useReducer
+side effects    
+    - useEffect
+to consume context    
+    - useContext
+to access DOM elements
+    - useRef
+performance optimization
+    - useCallback => memoize a function
+    - useMemo => memoize a value
+
+custom hooks
+
+    when to use custom hooks ?
+
+    - when you have a logic that is used in multiple components
