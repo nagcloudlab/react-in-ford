@@ -15,8 +15,12 @@ performance optimization
     - useCallback => memoize a function
     - useMemo => memoize a value
 
+third party hooks
+    - react-query
+    - react-table
+    - formik
+    - react-router-dom
+
 custom hooks
-
     when to use custom hooks ?
-
     - when you have a logic that is used in multiple components

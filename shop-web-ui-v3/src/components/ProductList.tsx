@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withCard } from "../hoc";
 import { useOnline } from "../hooks";
 import Product from "./Product";
 
@@ -40,14 +41,11 @@ function ProductList(props: any) {
   };
 
   return (
-    <div className="card mt-1">
-      <div className="card-header">Product List</div>
-      <div className="card-body">
-        {!online && <div className="alert alert-danger">You are offline</div>}
-        {renderProducts()}
-      </div>
-    </div>
+    <>
+      {!online && <div className="alert alert-danger">You are offline</div>}
+      {renderProducts()}
+    </>
   );
 }
 
-export default ProductList;
+export default withCard(ProductList);

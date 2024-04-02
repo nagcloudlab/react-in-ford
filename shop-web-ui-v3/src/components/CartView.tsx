@@ -1,6 +1,7 @@
 import React, { useContext, useMemo, useState } from "react";
 import CartContext from "../contexts/CartContext";
-import { useOnline } from "../hooks";
+import { withCard } from "../hoc";
+import { useOnline } from "../hooks/index";
 
 function CartView(props: any) {
   console.log("CartView render");
@@ -57,31 +58,28 @@ function CartView(props: any) {
   };
 
   return (
-    <div className="card">
-      <div className="card-header">Item(s) in cart</div>
-      <div className="card-body">
-        {!online && <div className="alert alert-danger">You are offline</div>}
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th>S-No</th>
-              <th>Item Name</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>{renderCartLines()}</tbody>
-          <tfoot>
-            <tr>
-              <td colSpan={4}>Total Amount</td>
-              <td>&#8377; {totalAmountOfCartLines}</td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div>
+    <>
+      {!online && <div className="alert alert-danger">You are offline</div>}
+      <table className="table table-bordered">
+        <thead>
+          <tr>
+            <th>S-No</th>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>{renderCartLines()}</tbody>
+        <tfoot>
+          <tr>
+            <td colSpan={4}>Total Amount</td>
+            <td>&#8377; {totalAmountOfCartLines}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </>
   );
 }
 
-export default CartView;
+export default withCard(CartView);

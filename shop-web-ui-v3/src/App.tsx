@@ -14,8 +14,8 @@ function App() {
       <CartContext.Provider value={{ cart, dispatch }}>
         <Navbar title="shop-IT" />
         <button onClick={(e) => setToggle(!toggle)}>toggle</button>
-        <CartView />
-        <ProductList />
+        <CartView title="CartView" />
+        <ProductList title="ProductList" />
       </CartContext.Provider>
     </div>
   );
