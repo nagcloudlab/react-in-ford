@@ -1,26 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { withCard } from "../hoc";
 import { useOnline } from "../hooks";
 import Product from "./Product";
 
+import { getProducts } from "../api/products";
+
 function ProductList(props: any) {
-  const [products] = useState([
-    {
-      id: 1,
-      name: "Laptop",
-      price: 1000.0,
-      description: "Mac pro Laptop",
-      imagePath: "images/laptop.png",
-    },
-    {
-      id: 2,
-      name: "Mobile",
-      price: 500.0,
-      description: "iphone pro Laptop",
-      imagePath: "images/mobile.png",
-    },
-  ]);
+  const [products, setProducts] = useState([]);
   const online = useOnline();
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await getProducts();
+      setProducts(response.data);
+    };
+    fetchProducts();
+  }, []);
 
   const renderProduct = (product: any) => {
     return (

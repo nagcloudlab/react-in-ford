@@ -1,30 +1,41 @@
-import React, { useContext, useState, useCallback } from "react";
+import React, { useContext, useState, useCallback, useEffect } from "react";
 import CartContext from "../contexts/CartContext";
 import Button from "./Button";
 import Review from "./Review";
 import ReviewForm from "./ReviewForm_v2";
 
+import { getReviews, addReview } from "../api/products";
+
 function Product(props: any) {
   let { product, onBuy } = props;
   const { dispatch, cart } = useContext(CartContext);
   const [currentTab, setCurrentTab] = useState(1);
-  const [reviews, setReviews] = useState([
-    {
-      stars: 5,
-      author: "who-1",
-      body: "sample review-1",
-    },
-  ]);
+  const [reviews, setReviews] = useState([] as any);
 
   const handleNewReview = useCallback((e: any) => {
+    console.log(e);
     let { review } = e;
-    let newReviews = [review, ...reviews];
-    setReviews(newReviews);
+    console.log(review);
+    const addNewReview = async () => {
+      const response = await addReview(product.id, review);
+      setReviews([...reviews, response.data]);
+    };
+    addNewReview();
   }, []);
 
   const handleTabChange = useCallback((tabIndex: number) => {
     setCurrentTab(tabIndex);
   }, []);
+
+  useEffect(() => {
+    if (currentTab === 3) {
+      const fetchReviews = async () => {
+        const response = await getReviews(product.id);
+        setReviews([response.data, ...reviews]);
+      };
+      fetchReviews();
+    }
+  }, [currentTab]);
 
   const handleBuy = () => {
     const action = {
@@ -51,7 +62,11 @@ function Product(props: any) {
         panel = <div>{product.description}</div>;
         break;
       case 2:
-        panel = <div>Not Yet</div>;
+        panel = (
+          <div>
+            <pre>{JSON.stringify(product.specification, null, 4)}</pre>
+          </div>
+        );
         break;
       case 3:
         panel = (

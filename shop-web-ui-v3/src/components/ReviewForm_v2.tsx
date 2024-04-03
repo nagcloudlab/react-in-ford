@@ -16,9 +16,8 @@ function ReviewForm(props: any) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newReview = {};
     if (onNewReview) {
-      onNewReview({ review: newReview });
+      onNewReview({ review });
       setIsOpened(false);
     }
   };
