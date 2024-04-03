@@ -1,0 +1,52 @@
+
+
+manual testing 
+
+    - console output
+    - editor debugging tools
+
+-------------------------------------------- 
+
+automated testing
+
+    - unit tests
+    - integration tests
+    - end-to-end tests
+    
+-------------------------------------------- 
+
+testing
+
+    - Arrange
+    - Act
+    - Assert
+
+--------------------------------------------
+testing frameworks
+    - Jest
+    - Jasmine
+    - Mocha
+
+--------------------------------------------
+test runners
+    - Jest
+    - Karma
+--------------------------------------------
+assertion libraries
+    - Jest
+    - Chai
+    - Jasmine
+
+--------------------------------------------
+mocking libraries
+    - Jest 
+    - Sinon
+
+--------------------------------------------    
+test coverage
+    - Jest
+    - Istanbul
+    
+--------------------------------------------  
+ - react-testing-library ( rtl )
+--------------------------------------------
