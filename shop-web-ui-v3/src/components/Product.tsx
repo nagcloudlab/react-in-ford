@@ -31,7 +31,8 @@ function Product(props: any) {
     if (currentTab === 3) {
       const fetchReviews = async () => {
         const response = await getReviews(product.id);
-        setReviews([response.data, ...reviews]);
+        console.log(response.data);
+        setReviews([...response.data]);
       };
       fetchReviews();
     }
