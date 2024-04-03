@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 function ReviewForm(props: any) {
   const { onNewReview } = props;
   const [isOpened, setIsOpened] = useState(false);
-  const [review, setReview] = useState({ stars: 0, author: "", body: "" });
+  const [review, setReview] = useState({ stars: 1, author: "", body: "" });
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -17,6 +17,7 @@ function ReviewForm(props: any) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (onNewReview) {
+      console.log(review);
       onNewReview({ review });
       setIsOpened(false);
     }

@@ -18,7 +18,7 @@ function Product(props: any) {
     console.log(review);
     const addNewReview = async () => {
       const response = await addReview(product.id, review);
-      setReviews([...reviews, response.data]);
+      setReviews([response.data, ...reviews]);
     };
     addNewReview();
   }, []);
