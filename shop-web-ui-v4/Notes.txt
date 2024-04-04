@@ -24,3 +24,23 @@ third party hooks
 custom hooks
     when to use custom hooks ?
     - when you have a logic that is used in multiple components
+
+
+
+
+    => React is just View Library with components
+
+    what is missing in react for fullstack application
+
+    - form management
+    - routing
+    - state management
+    - data fetching
+    - partial rendering
+    ...
+    - can't fetch data from databse..
+    - cors issue
+    - not good SEO support
+    - intial page load time is slow
+    ....
+    - security..

@@ -1,0 +1,13 @@
+
+
+
+- Route
+- Nested Routes
+- Dynamic Routes
+- Nested Dynamic Routes
+- Catch All Routes
+- Not Found
+- File  co-location
+- Route groups
+- layouts
+- Nested layouts
